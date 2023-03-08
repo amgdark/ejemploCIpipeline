@@ -6,4 +6,4 @@ def hola(request):
 
 
 def hola2(request):
-    return render(request,'hola.html')
+    return render(request, 'hola.html')

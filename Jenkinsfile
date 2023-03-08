@@ -3,13 +3,14 @@ pipeline {
     stages {
         stage('analisis-codigo') {
             steps {
-                sh 'flake8 --max-complexity=10 --max-line-length=100 . '
+                sh 'flake8 --max-complexity=10 --max-line-length=100 .'
                 sh 'echo "Ejecuta SonarQube"'
             }
         }
         stage('test') {
             steps {
-                sh 'echo "Pruebas unitarias"'
+                sh 'python3 manage.py test'
+                sh 'echo "Pruebas de aceptación (behave y selenium)"'
             }
             
         }
