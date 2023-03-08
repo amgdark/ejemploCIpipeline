@@ -17,14 +17,17 @@ pipeline {
         stage('build') {
             steps {
                 sh 'echo "Cosas de construcción"'
-                // sh 'python manage.py collectstatic --noinput'
+                sh 'python3 manage.py collectstatic --noinput'
+                sh 'echo "Se construye imagen de docker con todas las dependencias y la aplicación"'
+                sh 'echo "Sube la imagen creada a un registry (repo de imagenes)"'
+
             }
         }
         stage('despliegue-pre') {
             steps {
                 sh 'echo "Despliegue a pre-producción"'
-                // sh 'chmod +x deploy.sh'
-                // sh './deploy.sh'
+                sh 'chmod +x deploy.sh'
+                sh './deploy.sh'
             }
         }
 
@@ -40,11 +43,11 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            deleteDir() /* clean up our workspace */
-        }
-    }
+    // post {
+    //     always {
+    //         deleteDir() /* clean up our workspace */
+    //     }
+    // }
 
 }
 chuckNorris()
