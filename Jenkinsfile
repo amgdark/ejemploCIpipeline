@@ -7,6 +7,12 @@ pipeline {
                 sh 'echo "Ejecuta SonarQube"'
             }
         }
+        stage('test-docker') {
+            steps {
+                sh 'docker info'
+            }
+            
+        }
         stage('test') {
             steps {
                 sh 'python3 manage.py test'
